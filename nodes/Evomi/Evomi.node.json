@@ -1,0 +1,21 @@
+{
+    "node": "n8n-nodes-base.evomi",
+    "nodeVersion": "1.0",
+    "codexVersion": "1.0",
+    "categories": [
+        "Utility",
+        "Development"
+    ],
+    "resources": {
+        "credentialDocumentation": [
+            {
+                "url": "https://docs.evomi.com/scraping-products-instructions/scraper-api/authentication/"
+            }
+        ],
+        "primaryDocumentation": [
+            {
+                "url": "https://docs.evomi.com/scraping-products-instructions/scraper-api/"
+            }
+        ]
+    }
+}
