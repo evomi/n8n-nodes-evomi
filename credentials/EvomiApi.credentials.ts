@@ -1,4 +1,9 @@
-import { ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
+import {
+    IAuthenticateGeneric,
+    ICredentialTestRequest,
+    ICredentialType,
+    INodeProperties,
+} from 'n8n-workflow';
 
 export class EvomiApi implements ICredentialType {
     name = 'evomiApi';
@@ -15,16 +20,27 @@ export class EvomiApi implements ICredentialType {
             },
             description: 'Your Evomi API key. Get it from the <a href="https://my.evomi.com/my/products/scraper-api-universal/playground" target="_blank">Evomi Dashboard</a>.',
         },
+        {
+            displayName: 'Base URL',
+            name: 'baseUrl',
+            type: 'string',
+            default: 'https://scrape.evomi.com',
+            description: 'The base URL for the Evomi Scraper API',
+        },
     ];
-    test: ICredentialTestRequest = {
-        request: {
-            baseURL: 'https://scrape.evomi.com',
-            url: '/api/v1/scraper/health',
-            method: 'GET',
+    authenticate: IAuthenticateGeneric = {
+        type: 'generic',
+        properties: {
             headers: {
                 'x-api-key': '={{$credentials.apiKey}}',
             },
         },
     };
+    test: ICredentialTestRequest = {
+        request: {
+            baseURL: '={{$credentials.baseUrl}}',
+            url: '/api/v1/scraper/health',
+            method: 'GET',
+        },
+    };
 }
-
